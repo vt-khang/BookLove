@@ -1,0 +1,466 @@
+<!-- HEADER -->
+{{#if registered}}
+<header id="only-header" class="h-100 w-100 position-sticky">
+    <nav class="navbar navbar-expand-lg" id="navBar">
+        <a class="navbar-brand" href="/">
+            <img id="logo" src="/images/logo.png" class="d-lg-block d-sm-none d-xs-none d-xxs-none">
+            <img id="logoSm" src="/images/logo-sm.png" class="d-lg-none">
+        </a>
+        <form method="GET" action="/search" class="search-bar justify-content-between align-items-center d-lg-flex d-md-flex d-sm-none d-xs-none d-xxs-none">
+            <input type="text" name="q" class="w-100" placeholder="Search by title, author or keyword" value="{{q}}">
+            <button type="submit" class="btn position-relative"><img src="/icons/search.png" class="img-center"></button>
+        </form>
+        <div class="navbar-collapse text-center" id="navbarNav">
+            <form method="GET" action="/search" id="search-sm" class="search-bar d-flex justify-content-between align-items-center d-lg-none d-md-none">
+                <input type="text" name="q" class="w-100" placeholder="Search by title, author or keyword" value="{{q}}">
+                <button type="submit" class="btn position-relative"><img src="/icons/search.png" class="img-center"></button>
+            </form>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#top">HOME</a>
+                </li>
+            </ul>
+        </div>
+        <div class="account d-flex align-items-center justify-content-between ms-auto">
+            <div class="shopping">
+                <a href="/user/bill" class="text-center">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+            </div>
+            <div class="user dropdown">
+                <button type="button" data-bs-toggle="dropdown" aria-expanded="false" class="d-xl-block d-lg-block d-md-none d-sm-none d-xs-none">
+                    {{name_user}}
+                    <i id="dropdownBtn" class="fa-solid fa-caret-down"></i>
+                </button>
+                <button type="button" data-bs-toggle="dropdown" aria-expanded="false" class="d-xl-none d-lg-none">
+                    <i id="dropdownBtn" class="fa-solid fa-circle-user"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            Settings
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/user/profile">
+                            <i class="fa-solid fa-circle-user"></i>
+                            My Account
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/log-out">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            Log Out
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <i id="navIcons" class="fa-solid fa-bars d-lg-none" onclick="ShowAndHideMenu();"></i>
+    </nav>
+</header>
+{{else}}
+<header id="only-header" class="h-100 w-100 position-sticky">
+    <nav class="navbar navbar-expand-lg" id="navBar">
+        <a class="navbar-brand" href="/">
+            <img id="logo" src="/images/logo.png" class="d-lg-block d-sm-none d-xs-none d-xxs-none">
+            <img id="logoSm" src="/images/logo-sm.png" class="d-lg-none">
+        </a>
+        <form method="GET" action="/search" class="search-bar justify-content-between align-items-center d-lg-flex d-md-flex d-sm-flex d-xs-none d-xxs-none">
+            <input type="text" name="q" class="w-100" placeholder="Search by title, author or keyword" value="{{q}}">
+            <button type="submit" class="btn position-relative"><img src="/icons/search.png" class="img-center"></button>
+        </form>
+        <div class="navbar-collapse text-center" id="navbarNav">
+            <form method="GET" action="/search" id="search-sm" class="search-bar d-flex justify-content-between align-items-center d-lg-none d-md-none d-sm-none">
+                <input type="text" name="q" class="w-100" placeholder="Search by title, author or keyword" value="{{q}}">
+                <button type="submit" class="btn position-relative"><img src="/icons/search.png" class="img-center"></button>
+            </form>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#top">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn login-btn" href="/log-in">Log In</a>
+                </li>
+            </ul>
+        </div>
+        <i id="navIcons" class="fa-solid fa-bars d-lg-none" onclick="ShowAndHideMenu();"></i>
+    </nav>
+</header>
+{{/if}}
+<!-- END HEADER -->
+
+<!-- LOADING -->
+<div id="loader" class="loading position-absolute w-100">
+    <div class="position-relative vh-100">
+        <img src="/icons/loading.gif" class="img-center">
+    </div>
+</div>
+<!-- END LOADING -->
+
+<!-- GENRES -->
+<section id="only-genres">
+    <div class="container">
+        <div id="genreSwiper" class="swiper">
+            <div class="swiper-wrapper text-center">
+                <div class="swiper-slide">
+                    <a href="/search?genre=romance">Romance</a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="/search?genre=action-and-adventure">Action & Adventure</a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="/search?genre=mystery-and-thriller">Mystery & Thriller</a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="/search?genre=biographies-and-history">Biographies & History</a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="/search?genre=childrens">Children's</a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="/search?genre=young-adult">Young Adult</a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="/search?genre=fantasy">Fantasy</a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="/search?genre=historical-fiction">Historical Fiction</a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="/search?genre=horror">Horror</a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="/search?genre=literary-fiction">Literary Fiction</a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="/search?genre=non-fiction">Non-Fiction</a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="/search?genre=science-fiction">Science Fiction</a>
+                </div>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            </div>
+    </div>
+</section>
+
+<script src="/package/swiper-8.3.2/swiper-bundle.min.js"></script>
+<script src="/javascripts/swiper-2.js"></script>
+<!-- END GENRES -->
+
+<!-- MENU -->
+<section id="menu" class="d-flex justify-content-between flex-wrap">
+    <div class="menu-left">
+        <div class="filter-bar">
+            <form method="POST" action="">
+                <h2>Select Filter</h2>
+                <div class="language-filter">
+                    <h4>Language</h4>
+                    <div class="filter">
+                        <label>
+                            <input type="checkbox" name="en">
+                            English
+                        </label>
+                    </div>
+                    <div id="filterLanguages" class="more-filter">
+                        <div class="filter">
+                            <label>
+                                <input type="checkbox" name="vn">
+                                Vietnamese
+                            </label>
+                        </div>
+                    </div>
+                    <div class="view-more d-inline-block" onclick="ShowMoreFilterLanguages();">View More</div>
+                </div>
+                <div class="price-filter">
+                    <h4>Price</h4>
+                    <div class="range">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <input id="range" name="min_price" type="number" min="0" max="999999" class="form-control" placeholder="Min" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                            <span>-</span>
+                            <input id="range" name="max_price" type="number" min="0" max="999999" class="form-control" placeholder="Max" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                        </div>
+                    </div>
+                </div>
+                <div class="genre-filter">
+                    <h4>Genre</h4>
+                    <div class="filter">
+                        <label>
+                            <input type="checkbox" name="action_and_adventure">
+                            Action & Adventure
+                        </label>
+                    </div>
+                    <div class="filter">
+                        <label>
+                            <input type="checkbox" name="biographies_and_history">
+                            Biographies & History
+                        </label>
+                    </div>
+                    <div class="filter">
+                        <label>
+                            <input type="checkbox" name="childrens">
+                            Children's
+                        </label>
+                    </div>
+                    <div class="filter">
+                        <label>
+                            <input type="checkbox" name="fantasy">
+                            Fantasy
+                        </label>
+                    </div>
+                    <div class="filter">
+                        <label>
+                            <input type="checkbox" name="historical_fiction">
+                            Historical Fiction
+                        </label>
+                    </div>
+                    <div id="filterGenres" class="more-filter">
+                        <div class="filter">
+                            <label>
+                                <input type="checkbox" name="horror">
+                                Horror
+                            </label>
+                        </div>
+                        <div class="filter">
+                            <label>
+                                <input type="checkbox" name="literary_fiction">
+                                Literary Fiction
+                            </label>
+                        </div>
+                        <div class="filter">
+                            <label>
+                                <input type="checkbox" name="mystery_and_thriller">
+                                Mystery & Thriller
+                            </label>
+                        </div>
+                        <div class="filter">
+                            <label>
+                                <input type="checkbox" name="non_fiction">
+                                Non-Fiction
+                            </label>
+                        </div>
+                        <div class="filter">
+                            <label>
+                                <input type="checkbox" name="romance">
+                                Romance
+                            </label>
+                        </div>
+                        <div class="filter">
+                            <label>
+                                <input type="checkbox" name="science_fiction">
+                                Science Fiction
+                            </label>
+                        </div>
+                        <div class="filter">
+                            <label>
+                                <input type="checkbox" name="young-adult">
+                                Young Adult
+                            </label>
+                        </div>
+                    </div>
+                    <div class="view-more d-inline-block" onclick="ShowMoreFilterGenres();">View More</div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn-btn">Apply</button>
+                </div>             
+            </form>
+        </div>
+    </div>
+    <div class="menu-right">
+        <div class="menu-bar">
+            <h2>Search Result</h2>
+            <div class="sort d-flex">
+                <span>Sort by:</span>
+                <ul class="d-flex align-items-center">
+                    <li><a href="{{sort.url}}&sort=new" class="{{sort.btn.sortNew}}">New</a></li>
+                    <li><a href="{{sort.url}}&sort=low" class="{{sort.btn.sortLow}}">Low Price</a></li>
+                    <li><a href="{{sort.url}}&sort=high" class="{{sort.btn.sortHigh}}">High Price</a></li>
+                </ul>
+            </div>
+            <div class="container">
+                <div class="row">
+                    {{#each books}}
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xxs-12">
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <a href="/book/{{this.slug}}">
+                                    <img src="{{this.image}}" class="w-100">
+                                </a>
+                            </div>
+                            <div class="menu-item-content">
+                                <h2>{{this.name}}</h2>
+                                <h4><a href="https://www.google.com/search?q={{this.arthur}}" target="_blank">{{this.arthur}}</a></h4>
+                                <h3>${{this.price}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            {{#if conditionPages.alert}}
+            <h3 class="text-center">No Result</h3>
+            {{/if}}
+            <nav class="d-flex align-items-center justify-content-center">
+                {{#if conditionPages.validPages}}
+                <ul class="pagination">
+
+                    <li class="page-item">
+                        <a class="page-link text-center" href="{{numberPages.prevUrl}}">
+                            <i class="fa-solid fa-angle-left"></i>
+                        </a>
+                    </li>
+
+                    {{#if conditionPages.validFirstPage}}
+                    {{#if conditionPages.currentFirstPage}}
+                    <li id="FirstPage" class="page-item current">
+                        <a class="page-link text-center" href="{{numberPages.firstUrl}}">
+                            {{numberPages.firstPage}}
+                        </a>
+                    </li>
+                    {{else}}
+                    <li id="FirstPage" class="page-item">
+                        <a class="page-link text-center" href="{{numberPages.firstUrl}}">
+                            {{numberPages.firstPage}}
+                        </a>
+                    </li>
+                    {{/if}}           
+                    {{else}}
+                    <li id="FirstPage" class="page-item page-hidden">
+                        <a class="page-link text-center" href="{{numberPages.firstUrl}}">
+                            {{numberPages.firstPage}}
+                        </a>
+                    </li>      
+                    {{/if}}
+                    
+                    {{#if conditionPages.validSecondPage}}
+                    {{#if conditionPages.currentSecondPage}}
+                    <li id="SecondPage" class="page-item current">
+                        <a class="page-link text-center" href="{{numberPages.secondUrl}}">
+                            {{numberPages.secondPage}}
+                        </a>
+                    </li>
+                    {{else}}
+                    <li id="SecondPage" class="page-item">
+                        <a class="page-link text-center" href="{{numberPages.secondUrl}}">
+                            {{numberPages.secondPage}}
+                        </a>
+                    </li>
+                    {{/if}}
+                    {{else}}
+                    <li id="SecondPage" class="page-item page-hidden">
+                        <a class="page-link text-center" href="{{numberPages.secondUrl}}">
+                            {{numberPages.secondPage}}
+                        </a>
+                    </li>
+                    {{/if}}
+                    
+                    {{#if conditionPages.validThirdPage}}
+                    {{#if conditionPages.currentThirdPage}}
+                    <li id="ThirdPage" class="page-item current">
+                        <a class="page-link text-center" href="{{numberPages.thirdUrl}}">
+                            {{numberPages.thirdPage}}
+                        </a>
+                    </li>
+                    {{else}}
+                    <li id="ThirdPage" class="page-item">
+                        <a class="page-link text-center" href="{{numberPages.thirdUrl}}">
+                            {{numberPages.thirdPage}}
+                        </a>
+                    </li>
+                    {{/if}}
+                    {{else}}
+                    <li id="ThirdPage" class="page-item page-hidden">
+                        <a class="page-link text-center" href="{{numberPages.thirdUrl}}">
+                            {{numberPages.thirdPage}}
+                        </a>
+                    </li>
+                    {{/if}}
+
+                    <li class="page-item">
+                        <a class="page-link text-center" href="{{numberPages.nextUrl}}">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                {{/if}}
+            </nav>
+        </div>
+    </div>
+</section>
+<!-- END MENU -->
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="container d-flex align-items-lg-center justify-content-around">
+        <div class="row">
+            <div class="contact-left col-lg-6">
+                <h2 class="title text-center">Contact Me</h2>
+                <div class="w-100">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <a href="https://goo.gl/maps/QMcF6oy3kD32JAjS9" target="_blank"><span>Ward 9, Phu Nhuan District, Ho Chi Minh City</span></a>
+                </div>
+                <div class="w-100">
+                    <i class="fa-solid fa-phone"></i>
+                    <a href="tel:0773100985" target="_blank"><span>0773 100 985</span></a>
+                </div>
+                <div class="w-100">
+                    <i class="fa-solid fa-envelope"></i>
+                    <a href="#"><span>vuong.khang3012<br class="d-lg-none d-md-none d-sm-none d-xs-none d-xxs-block">@gmail.com</span></a>
+                </div>
+                <div class="social-icons w-100 text-center">
+                    <a href="https://www.facebook.com/vuongthe.khang" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.linkedin.com/in/vt-khang" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/vt-khang" target="_blank"><i class="fa-brands fa-github"></i></a>
+                </div>
+                <div class="text-center">
+                    <a href="">
+                        <button class="btn-btn">Download CV</button>
+                    </a>
+                </div>
+            </div>
+            <hr class="d-lg-none d-md-block">
+            <div class="contact-right col-lg-6">
+                <form method="POST" action="/feedback" name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <h6 id="msg" class="text-center"></h6>
+                    <div class="text-center">
+                        <button id="submitBtn" type="submit" class="btn-btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzw6m7OxNM1lBo_pOqG2EsCOAU97byQMgKNWiqeZ0cZkv9w1IrQjOBjJ94S3UwcLOJWcQ/exec';
+    const form = document.forms['submit-to-google-sheet'];
+    const msg = document.getElementById('msg');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+            .then(() => {
+                msg.innerHTML = "Message sent successfully";
+                setTimeout(function() {
+                    msg.innerHTML = "";
+                }, 5000);
+                form.reset();
+            })
+            .catch(error => console.error('Error!', error.message))
+    });
+</script>
+<!-- END CONTACT -->
+
+<!-- FOOTER -->
+<footer>
+    <p class="text-center">Copyright &copy; by Vuong The Khang | 2022</p>
+</footer>
+<!-- END FOOTER -->

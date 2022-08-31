@@ -1,0 +1,67 @@
+<!-- LOGIN -->
+<section id="login" class="vh-100 w-100">
+    <div class="logo-box d-lg-block d-md-none d-sm-none d-xs-none d-xxs-none">
+        <a class="navbar-brand" href="/">
+            <img id="logo" src="/images/logo.png">
+        </a>
+    </div>
+    <div class="login-box img-center">
+        <div class="logo-sm-box d-lg-none">
+            <a class="navbar-brand" href="/">
+                <img id="logo" src="/images/logo-sm.png">
+            </a>
+        </div>
+        <h1 class="text-center">Log In</h1>
+        <p id="alertMsg" class="text-center error-login">{{alert}}</p>
+        <form method="POST" action="">
+            <div class="text-field position-relative">
+                <input type="text" class="form-control" name="username" required>
+                <span></span>
+                <label class="form-label">Username</label>
+            </div>
+            <div class="text-field position-relative">
+                <input type="password" class="form-control" name="password" required>
+                <span></span>
+                <label class="form-label">Password</label>
+            </div>
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="checkbox">
+                    <label class="position-relative">
+                        <input type="checkbox">
+                        <span class="checkmark">
+                            <i class="fa-solid fa-check img-center"></i>
+                        </span>
+                        Remember me
+                    </label>
+                </div>
+                <div class="forgot-password">
+                    <a href="">Forgot password?</a>
+                </div>
+            </div>
+            <div></div>
+            <input type="submit" class="login-btn w-100" value="LOGIN">
+            <div class="signup-link text-center">
+                <span>If you don't have account, please</span>
+                <a href="/sign-up">Sign Up</a>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script>
+    // Hide required pop-up of input form
+    document.addEventListener('invalid', (function () {
+        return function (e) {
+            e.preventDefault();
+        };
+    })(), true);
+</script>
+<!-- END LOGIN -->
+
+<!-- LOADING -->
+<div id="loader" class="loading position-absolute w-100">
+    <div class="position-relative vh-100">
+        <img src="/icons/loading.gif" class="img-center">
+    </div>
+</div>
+<!-- END LOADING -->

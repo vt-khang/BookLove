@@ -1,0 +1,93 @@
+/********** BOOTSTRAP **********/
+.img-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/********** Super extra large devices only (-xxl) **********/
+@media (min-width: 1400px) {
+}
+/********** Extra large devices only (-xl) **********/
+@media (min-width: 1200px) and (max-width: 1399px) {
+}
+/********** Large devices only (-lg) **********/
+@media (min-width: 992px) and (max-width: 1199px) {
+}
+/********** Medium devices only (-md) **********/
+@media (min-width: 768px) and (max-width: 991px) {
+}
+/********** Small devices only (-sm) **********/
+@media (min-width: 576px) and (max-width: 767px) {
+}
+/********** Extra small devices only (-xs) **********/
+@media (min-width: 280px) and (max-width: 575px) {
+    .d-xs-none {
+        display: none;
+    }
+    .d-xs-block {
+        display: block;
+    }
+    .col-xs-6 {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+    .col-xs-12 {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+    .text-xs-center {
+        text-align: center;
+    }
+    .flex-xs-row {
+        flex-direction: row;
+    }
+    .w-xs-100 {
+        width: 100% !important;
+    }
+}
+/********** Super extra small devices only (-xs) **********/
+@media (max-width: 279px) {
+    .d-xxs-none {
+        display: none;
+    }
+    .d-xxs-block {
+        display: block;
+    }
+    .col-xxs-6 {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+    .col-xxs-12 {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+    .text-xxs-center {
+        text-align: center;
+    }
+    .flex-xxs-row {
+        flex-direction: row;
+    }
+    .w-xxs-100 {
+        width: 100% !important;
+    }
+}
+
+/********** ANIMATION **********/
+
+/********** SCROLL BAR **********/
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background-color: var(--dark-blue-color) !important;
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--red-color) !important;
+    border-radius: 60px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--dark-red-color) !important;
+}

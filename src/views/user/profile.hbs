@@ -1,0 +1,240 @@
+<!-- HEADER -->
+<header id="only-header" class="h-100 w-100 position-sticky">
+    <nav class="navbar navbar-expand-lg" id="navBar">
+        <a class="navbar-brand" href="/">
+            <img id="logo" src="/images/logo.png" class="d-lg-block d-sm-none d-xs-none d-xxs-none">
+            <img id="logoSm" src="/images/logo-sm.png" class="d-lg-none">
+        </a>
+        <form method="GET" action="/search" class="search-bar justify-content-between align-items-center d-lg-flex d-md-flex d-sm-none d-xs-none d-xxs-none">
+            <input type="text" name="q" class="w-100" placeholder="Search by title, author or keyword">
+            <button type="submit" class="btn position-relative"><img src="/icons/search.png" class="img-center"></button>
+        </form>
+        <div class="navbar-collapse text-center" id="navbarNav">
+            <form method="GET" action="/search" id="search-sm" class="search-bar d-flex justify-content-between align-items-center d-lg-none d-md-none">
+                <input type="text" name="q" class="w-100" placeholder="Search by title, author or keyword">
+                <button type="submit" class="btn position-relative"><img src="/icons/search.png" class="img-center"></button>
+            </form>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#top">HOME</a>
+                </li>
+            </ul>
+        </div>
+        <div class="account d-flex align-items-center justify-content-between ms-auto">
+            <div class="shopping">
+                <a href="/user/bill" class="text-center">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+            </div>
+            <div class="user dropdown">
+                <button type="button" data-bs-toggle="dropdown" aria-expanded="false" class="d-xl-block d-lg-block d-md-none d-sm-none d-xs-none">
+                    {{name_user}}
+                    <i id="dropdownBtn" class="fa-solid fa-caret-down"></i>
+                </button>
+                <button type="button" data-bs-toggle="dropdown" aria-expanded="false" class="d-xl-none d-lg-none">
+                    <i id="dropdownBtn" class="fa-solid fa-circle-user"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            Settings
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/user/profile">
+                            <i class="fa-solid fa-circle-user"></i>
+                            My Account
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/log-out">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            Log Out
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <i id="navIcons" class="fa-solid fa-bars d-lg-none" onclick="ShowAndHideMenu();"></i>
+    </nav>
+</header>
+<!-- END HEADER -->
+
+<!-- LOADING -->
+<div id="loader" class="loading position-absolute w-100">
+    <div class="position-relative vh-100">
+        <img src="/icons/loading.gif" class="img-center">
+    </div>
+</div>
+<!-- END LOADING -->
+
+<!-- PROFILE -->
+<section id="profile">
+    <div class="d-flex justify-content-start flex-wrap">
+        <div class="profile-left">
+            <div class="d-flex flex-xxl-column flex-xl-column flex-lg-row flex-md-row flex-sm-row flex-xs-row flex-xxs-row">
+                <a href="/user/profile">
+                    <div id="accountBtn" class="profile-btn active">
+                        <i class="fa-solid fa-circle-user"></i>
+                        Account
+                    </div>
+                </a>
+                <a href="/user/password">
+                    <div id="passwordBtn" class="profile-btn">
+                        <i class="fa-solid fa-key"></i>
+                        Password
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="profile-right">
+            <div class="user">
+                <h2 class="sub-title">Your Account</h2>
+                <form method="POST" action="/user/profile/change?_method=PUT">
+                    <div id="userBar" class="user-bar d-flex flex-column flex-wrap">
+                        <div class="user-item d-flex align-items-center">
+                            <div class="user-left">
+                                <span>Username</span>
+                            </div>
+                            <div class="user-right">
+                                <input type="text" class="form-control w-50 w-xs-100 w-xxs-100" readonly value="{{me.username}}">
+                            </div>
+                        </div>
+                        <div class="user-item d-flex align-items-center">
+                            <div class="user-left">
+                                <span>Name</span>
+                            </div>
+                            <div class="user-right">
+                                <input name="name" type="text" class="form-control w-50 w-xs-100 w-xxs-100" value="{{me.name}}">
+                            </div>
+                        </div>
+                        <div class="user-item d-flex align-items-center">
+                            <div class="user-left">
+                                <span>Sex</span>
+                            </div>
+                            <div class="user-right">
+                                {{#if man}}
+                                <label>
+                                    <input id="man" type="radio" name="s" onclick="CheckMan(this.id);" checked>Man
+                                </label>
+                                <label>
+                                    <input id="woman" type="radio" name="s" onclick="CheckMan(this.id);">Woman
+                                </label>
+                                {{else}}
+                                <label>
+                                    <input id="man" type="radio" name="s" onclick="CheckMan(this.id);">Man
+                                </label>
+                                <label>
+                                    <input id="woman" type="radio" name="s" onclick="CheckMan(this.id);" checked>Woman
+                                </label>
+                                {{/if}}
+                                <input id="sex" hidden name="sex" value="0">
+                            </div>
+                        </div>
+                        <div class="user-item d-flex align-items-center">
+                            <div class="user-left">
+                                <span>Phone</span>
+                            </div>
+                            <div class="user-right">
+                                <input name="phone" type="text" class="form-control w-50 w-xs-100 w-xxs-100" value="{{me.phone}}">
+                            </div>
+                        </div>             
+                        <div class="user-item d-flex align-items-center">
+                            <div class="user-left">
+                                <span>Address</span>
+                            </div>
+                            <div class="user-right">
+                                <input name="address" type="text" class="form-control" value="{{me.address}}">
+                            </div>
+                        </div>
+                        <div class="save-btn text-center">
+                            <button type="submit">Save</button>
+                        </div>                            
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    var sex = document.getElementById('sex');
+    function CheckMan(id) {
+        sex.value = man.checked ? '0' : '1';
+    }
+</script>
+<!-- END PROFILE -->
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="container d-flex align-items-lg-center justify-content-around">
+        <div class="row">
+            <div class="contact-left col-lg-6">
+                <h2 class="title text-center">Contact Me</h2>
+                <div class="w-100">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <a href="https://goo.gl/maps/QMcF6oy3kD32JAjS9" target="_blank"><span>Ward 9, Phu Nhuan District, Ho Chi Minh City</span></a>
+                </div>
+                <div class="w-100">
+                    <i class="fa-solid fa-phone"></i>
+                    <a href="tel:0773100985" target="_blank"><span>0773 100 985</span></a>
+                </div>
+                <div class="w-100">
+                    <i class="fa-solid fa-envelope"></i>
+                    <a href="#"><span>vuong.khang3012<br class="d-lg-none d-md-none d-sm-none d-xs-none d-xxs-block">@gmail.com</span></a>
+                </div>
+                <div class="social-icons w-100 text-center">
+                    <a href="https://www.facebook.com/vuongthe.khang" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.linkedin.com/in/vt-khang" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/vt-khang" target="_blank"><i class="fa-brands fa-github"></i></a>
+                </div>
+                <div class="text-center">
+                    <a href="">
+                        <button class="btn-btn">Download CV</button>
+                    </a>
+                </div>
+            </div>
+            <hr class="d-lg-none d-md-block">
+            <div class="contact-right col-lg-6">
+                <form method="POST" action="/feedback" name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <h6 id="msg" class="text-center"></h6>
+                    <div class="text-center">
+                        <button id="submitBtn" type="submit" class="btn-btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzw6m7OxNM1lBo_pOqG2EsCOAU97byQMgKNWiqeZ0cZkv9w1IrQjOBjJ94S3UwcLOJWcQ/exec';
+    const form = document.forms['submit-to-google-sheet'];
+    const msg = document.getElementById('msg');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+            .then(() => {
+                msg.innerHTML = "Message sent successfully";
+                setTimeout(function() {
+                    msg.innerHTML = "";
+                }, 5000);
+                form.reset();
+            })
+            .catch(error => console.error('Error!', error.message))
+    });
+</script>
+<!-- END CONTACT -->
+
+<!-- FOOTER -->
+<footer>
+    <p class="text-center">Copyright &copy; by Vuong The Khang | 2022</p>
+</footer>
+<!-- END FOOTER -->

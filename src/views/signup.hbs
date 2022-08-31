@@ -1,0 +1,58 @@
+<!-- SINGUP -->
+<section id="signup" class="vh-100 w-100">
+    <div class="logo-box d-lg-block d-md-none d-sm-none d-xs-none d-xxs-none">
+        <a class="navbar-brand" href="/">
+            <img id="logo" src="/images/logo.png">
+        </a>
+    </div>
+    <div class="signup-box img-center">
+        <div class="logo-sm-box d-lg-none">
+            <a class="navbar-brand" href="/">
+                <img id="logo" src="/images/logo-sm.png">
+            </a>
+        </div>
+        <h1 class="text-center">Sign Up</h1>
+        <p id="alertMsg" class="text-center error-signup">{{alert}}</p>
+        <form method="POST" action="">
+            <div class="text-field position-relative">
+                <input type="text" class="form-control" name="username" required>
+                <span></span>
+                <label class="form-label">Username</label>
+            </div>
+            <div class="text-field position-relative">
+                <input type="password" class="form-control" name="password" required>
+                <span></span>
+                <label class="form-label">Password</label>
+            </div>
+            <div class="text-field position-relative">
+                <input type="password" class="form-control" name="confirm_password" required>
+                <span></span>
+                <label class="form-label">Confirm Password</label>
+            </div>
+            <div></div>
+            <input type="submit" class="login-btn w-100" value="SIGNUP">
+            <div class="login-link text-center">
+                <span>Already have an account?</span>
+                <a href="/log-in">Log In</a>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script>
+    // Hide required pop-up of input form
+    document.addEventListener('invalid', (function () {
+        return function (e) {
+            e.preventDefault();
+        };
+    })(), true);
+</script>
+<!-- END SINGUP -->
+
+<!-- LOADING -->
+<div id="loader" class="loading position-absolute w-100">
+    <div class="position-relative vh-100">
+        <img src="/icons/loading.gif" class="img-center">
+    </div>
+</div>
+<!-- END LOADING -->
