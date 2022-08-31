@@ -30,11 +30,11 @@
     "method-override": "^3.0.0",
     "mongoose": "^6.5.3",
     "mongoose-slug-generator": "^1.0.4",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.19",
     "serverless-http": "^3.0.2"
   },
   "devDependencies": {
-    "morgan": "^1.10.0",
-    "nodemon": "^2.0.19",
     "prettier": "^2.7.1"
   }
 }
