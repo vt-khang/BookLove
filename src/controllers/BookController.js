@@ -25,9 +25,8 @@ class BookController {
                                 i,
                                 StringToLink(i),
                             ]),
-                            registered: global.registered,
-                            user: global.user,
-                            name_user: global.name_user,
+                            registered: req.cookies.registered == 'true',
+                            name_user: req.cookies.name,
                         }),
                     )
                     .catch(next);
@@ -51,91 +50,91 @@ class BookController {
                     .then(() => {
                         var duplicated = false;
                         var amount = 0;
-                        global.user.cart.forEach((item) => {
-                            if (item.slug == book.slug) {
-                                duplicated = true;
-                                amount = item.quantity;
-                            }
-                        });
-                        if (duplicated) {
-                            Account.findOneAndUpdate(
-                                { _id: global.user._id, 'cart.slug': book.slug },
-                                {
-                                    $set: {
-                                        'cart.$.quantity':
-                                            Number(amount) +
-                                            Number(req.body.quantity),
-                                        'cart.$.total':
-                                            Math.round(
-                                                book.price *
-                                                    (Number(amount) +
-                                                        Number(req.body.quantity)) *
-                                                    100,
-                                            ) / 100,
-                                    },
-                                    total:
-                                        global.user.total +
-                                        book.price * req.body.quantity,
-                                },
-                                { safe: true, multi: false },
-                            )
-                                .then(
-                                    setTimeout(function () {
-                                        Account.findById(global.user._id)
-                                            .then((account) => {
-                                                global.registered = true;
-                                                global.user =
-                                                    MongooseToObject(account);
-                                                global.name_user = String(
-                                                    global.user.name,
-                                                )
-                                                    .split(' ')
-                                                    .pop();
-                                                res.redirect('/user/bill');
-                                            })
-                                            .catch(next);
-                                    }, 500),
-                                )
-                                .catch(next);
-                        } else {
-                            Account.findOneAndUpdate(
-                                { _id: global.user._id },
-                                {
-                                    $push: {
-                                        cart: {
-                                            name: book.name,
-                                            price: book.price,
-                                            image: book.image,
-                                            slug: book.slug,
-                                            quantity: req.body.quantity,
-                                            total: book.price * req.body.quantity,
+                        Account.findById(req.cookies.id)
+                            .then((account) => {
+                                account.cart.forEach((item) => {
+                                    if (item.slug == book.slug) {
+                                        duplicated = true;
+                                        amount = item.quantity;
+                                    }
+                                });
+                                if (duplicated) {
+                                    Account.findOneAndUpdate(
+                                        {
+                                            _id: req.cookies.id,
+                                            'cart.slug': book.slug,
                                         },
-                                    },
-                                    total:
-                                        global.user.total +
-                                        book.price * req.body.quantity,
-                                },
-                                { safe: true, multi: false },
-                            )
-                                .then(
-                                    setTimeout(function () {
-                                        Account.findById(global.user._id)
-                                            .then((account) => {
-                                                global.registered = true;
-                                                global.user =
-                                                    MongooseToObject(account);
-                                                global.name_user = String(
-                                                    global.user.name,
-                                                )
-                                                    .split(' ')
-                                                    .pop();
+                                        {
+                                            $set: {
+                                                'cart.$.quantity':
+                                                    Number(amount) +
+                                                    Number(req.body.quantity),
+                                                'cart.$.total':
+                                                    Math.round(
+                                                        book.price *
+                                                            (Number(amount) +
+                                                                Number(
+                                                                    req.body
+                                                                        .quantity,
+                                                                )) *
+                                                            100,
+                                                    ) / 100,
+                                            },
+                                            total:
+                                                Number(req.cookies.total) +
+                                                book.price * req.body.quantity,
+                                        },
+                                        { safe: true, multi: false },
+                                    )
+                                        .then(
+                                            setTimeout(function () {
+                                                res.cookie(
+                                                    'total',
+                                                    Number(req.cookies.total) +
+                                                        book.price *
+                                                            req.body.quantity,
+                                                );
                                                 res.redirect('/user/bill');
-                                            })
-                                            .catch(next);
-                                    }, 500),
-                                )
-                                .catch(next);
-                        }
+                                            }, 500),
+                                        )
+                                        .catch(next);
+                                } else {
+                                    Account.findOneAndUpdate(
+                                        { _id: req.cookies.id },
+                                        {
+                                            $push: {
+                                                cart: {
+                                                    name: book.name,
+                                                    price: book.price,
+                                                    image: book.image,
+                                                    slug: book.slug,
+                                                    quantity: req.body.quantity,
+                                                    total:
+                                                        book.price *
+                                                        req.body.quantity,
+                                                },
+                                            },
+                                            total:
+                                                Number(req.cookies.total) +
+                                                book.price * req.body.quantity,
+                                        },
+                                        { safe: true, multi: false },
+                                    )
+                                        .then(
+                                            setTimeout(function () {
+                                                res.cookie(
+                                                    'total',
+                                                    Number(req.cookies.total) +
+                                                        book.price *
+                                                            req.body.quantity,
+                                                );
+                                                res.redirect('/user/bill');
+                                            }, 500),
+                                        )
+                                        .catch(next);
+                                }
+                            })
+                            .catch(next);
                     })
                     .catch(next);
             })

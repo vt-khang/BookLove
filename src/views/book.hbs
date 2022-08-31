@@ -180,7 +180,7 @@
             <form method="POST" action="/book/{{book.slug}}/buy?_method=PUT">
                 <hr>
                 <h5>Quantity</h5>
-                <input id="range" type="number" min="0" class="form-control" value="1" name="quantity">
+                <input id="range" type="number" min="1" class="form-control" value="1" name="quantity" onchange="UpdateBook(this.id);" onkeyup="UpdateBook(this.id);" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
                 <input hidden name="book" value="{{book._id}}"></input>
                 <button type="submit" class="btn-btn">Buy Now</button>
             </form>
@@ -188,6 +188,13 @@
         </div>
     </div>
 </section>
+
+<script>
+    function UpdateBook(id) {
+        var changePrice = document.getElementById(id);
+        if (changePrice.value == '') changePrice.value = '1';
+    }
+</script>
 <!-- END INFO -->
 
 <!-- DETAIL -->

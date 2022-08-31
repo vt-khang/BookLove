@@ -23,11 +23,11 @@ class SignupController {
             account
                 .save()
                 .then(() => {
-                    global.registered = true;
-                    global.user = MongooseToObject(account);
-                    global.name_user = String(global.user.name)
-                        .split(' ')
-                        .pop();
+                    res.cookie('registered', 'true');
+                    res.cookie('id', String(account._id));
+                    res.cookie('username', account.username);
+                    res.cookie('name', String(account.name).split(' ').pop());
+                    res.cookie('total', account.total);
                     res.redirect('/');
                 })
                 .catch(() => {

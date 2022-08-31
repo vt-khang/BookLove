@@ -26,11 +26,8 @@ class HomeController {
                             tops: MultipleMongooseToObject(tops).map(
                                 (t, index) => [t, top[index]],
                             ),
-                            registered: global.registered,
-                            user: global.user,
-                            name_user: String(global.user.name)
-                                .split(' ')
-                                .pop(),
+                            registered: req.cookies.registered == 'true',
+                            name_user: req.cookies.name,
                         });
                     })
                     .catch(next);
@@ -238,11 +235,8 @@ class HomeController {
                                 btn: sortBtn,
                                 url: sortUrl,
                             },
-                            registered: global.registered,
-                            user: global.user,
-                            name_user: String(global.user.name)
-                                .split(' ')
-                                .pop(),
+                            registered: req.cookies.registered == true,
+                            name_user: req.cookies.name,
                         });
                     })
                     .catch(next);
@@ -296,7 +290,7 @@ class HomeController {
 
     // [GET] /log-out
     logout(req, res, next) {
-        global.registered = false;
+        res.cookie('registered', 'false');
         res.redirect('/');
     }
 }

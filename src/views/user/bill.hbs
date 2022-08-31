@@ -113,7 +113,7 @@
                 <span>${{this.price}}</span>
             </div>
             <div class="quantity">
-                <input id="update_{{this.slug}}" type="number" min="0" class="form-control" value="{{this.quantity}}" onchange="UpdateBook(this.id);" onkeyup="UpdateBook(this.id);">
+                <input id="update_{{this.slug}}" type="number" min="1" class="form-control" value="{{this.quantity}}" onchange="UpdateBook(this.id);" onkeyup="UpdateBook(this.id);" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
             </div>
             <div class="total-price text-center">
                 <span class="output-price">${{this.total}}</span>
@@ -145,7 +145,7 @@
     // Update one book
     function UpdateBook(id) {
         var changePrice = document.getElementById(id);
-        if (changePrice.value == '') changePrice.value = '0';
+        if (changePrice.value == '') changePrice.value = '1';
         updateForm.action = '/user/bill/' + id.replace('update_','') + '/' + changePrice.value + '?_method=PUT';
         updateForm.submit(); 
     }

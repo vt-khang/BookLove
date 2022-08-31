@@ -13,7 +13,7 @@ const Book = new Schema({
     name: { type: String },
     price: { type: Number },
     image: { type: String },
-    slug: { type: String, unique: true, require: true },
+    slug: { type: String },
     quantity: { type: Number },
     total: { type: Number },
 });

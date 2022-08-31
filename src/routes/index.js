@@ -4,9 +4,6 @@ const LoginRouter = require('./login');
 const SignupRouter = require('./signup');
 const BookRouter = require('./book');
 const UserRouter = require('./user');
-global.registered = false;
-global.user = {};
-global.name_user = '';
 
 // Initial route function
 function route(app) {

@@ -6,6 +6,7 @@ const handlebars = require('express-handlebars');
 const serverless = require('serverless-http');
 const morgan = require('morgan');
 const MethodOverride = require('method-override');
+const CookieParser = require('cookie-parser');
 
 // Global variables
 const app = express();
@@ -23,6 +24,9 @@ app.use(express.urlencoded({
     extended: true,
 }));
 app.use(MethodOverride('_method'));
+
+// Using cookie
+app.use(CookieParser());
 
 // HTTP logger
 app.use(morgan('combined'));
