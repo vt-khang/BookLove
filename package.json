@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/vt-khang/BookLove#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
     "method-override": "^3.0.0",
@@ -31,7 +32,6 @@
     "mongoose-slug-generator": "^1.0.4"
   },
   "devDependencies": {
-    "bcryptjs": "^2.4.3",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.19",
     "prettier": "^2.7.1"
