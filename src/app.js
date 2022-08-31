@@ -3,6 +3,7 @@ const url = require('url');
 const path = require('path');
 const express = require('express');
 const handlebars = require('express-handlebars');
+const serverless = require('serverless-http');
 const morgan = require('morgan');
 const MethodOverride = require('method-override');
 
@@ -48,3 +49,7 @@ route(app);
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
 });
+
+// Export
+module.exports = app;
+module.exports.handler = serverless(app);
