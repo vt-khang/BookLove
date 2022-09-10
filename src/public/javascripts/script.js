@@ -62,5 +62,11 @@ document.addEventListener(
 $(window).on('load', function () {
     setTimeout(() => {
         $('#loader').hide();
+        $('body').css({
+            'background-color': 'var(--background-color)',
+            'height': '100%',
+            'overflow-y': 'auto',
+        });
     }, 200);
+
 });

@@ -23,6 +23,8 @@ html {
 }
 body {
     background-color: var(--background-color);
+    height: 100%;
+    overflow-y: hidden;
 }
 section {
     padding: 50px 7%;
