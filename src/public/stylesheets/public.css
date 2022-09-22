@@ -1405,8 +1405,10 @@ footer p {
 
 /* LOADING */
 .loading {
+    position: fixed !important;
     top: 0;
     left: 0;
+    z-index: 500;
 }
 .loading div {
     z-index: 150;
