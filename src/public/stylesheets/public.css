@@ -405,7 +405,7 @@ header {
 }
 .book-content h3 {
     font-size: 25px;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--red-color);
 }
 .book-content p {
@@ -1091,8 +1091,12 @@ footer p {
 }
 .price span {
     font-size: 40px;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--red-color);
+}
+.dollar {
+    font-size: 36px !important;
+    padding-right: 5px;
 }
 .info-content hr {
     margin: 10px 0;
@@ -1189,6 +1193,9 @@ footer p {
 }
 .paragraph p.special {
     font-weight: 600;
+}
+.paragraph p:last-child {
+    margin: 0;
 }
 /* END DETAIL */
 
